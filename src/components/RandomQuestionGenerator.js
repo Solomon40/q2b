@@ -1,53 +1,159 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function RandomQuestionGenerator({ topics }) {
-  const [numQuestions, setNumQuestions] = useState(0);
+function RandomQuestionGenerator() {
+  const [topics, setTopics] = useState([]);
   const [selectedTopics, setSelectedTopics] = useState([]);
+  const [questionCount, setQuestionCount] = useState(0);
   const [generatedQuestions, setGeneratedQuestions] = useState([]);
+  const [questions, setQuestions] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchTopics();
+  }, []);
+
+  const fetchTopics = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/topics');
+      setTopics(response.data);
+    } catch (error) {
+      console.error('Error fetching topics:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchQuestions();
+  }, []);
+
+  const fetchQuestions = async () => {
+    setLoading(true);
+
+    try {
+      const topicResponse = await axios.get(`http://localhost:8000/topics`);
+      const selectedTopic = topicResponse.data;
+
+      // const questionResponse = await axios.get(`http://localhost:8000/questions?topicId=${selectedTopic.id}`);
+      const questionResponse = await axios.get(`http://localhost:8000/questions`, {
+        params: {
+          topicId: selectedTopic.id,
+        },
+      });
+      setQuestions(questionResponse.data);
+      setLoading(false);
+    }
+    catch (error) {
+      console.error('Error fetching questions:', error);
+      setLoading(false);
+    }
+  };
+
+
+  const handleTopicSelectionToggle = (topicId) => {
+    setSelectedTopics((prevTopics) => {
+      // Check if the topic is already selected
+      const isTopicSelected = prevTopics.some((topic) => topic.id === topicId);
+
+      // If the topic is selected, remove it from the selected topics
+      if (isTopicSelected) {
+        return prevTopics.filter((topic) => topic.id !== topicId);
+      } else {
+        // If the topic is not selected, add it to the selected topics
+        const selectedTopic = topics.find((topic) => topic.id === topicId);
+        if (selectedTopic) {
+          return [...prevTopics, selectedTopic];
+        }
+      }
+
+      // If no changes are made, return the previous topics array
+      return prevTopics;
+    });
+  };
+
+
+  const handleQuestionCountChange = (event) => {
+    setQuestionCount(parseInt(event.target.value));
+  };
+
+  // Function to shuffle an array in-place using Fisher-Yates algorithm
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
 
   const handleGenerateQuestions = () => {
-    // Logic to generate random questions from selected topics
+    let remainingCount = questionCount;
+    // Create an array to store the generated questions
     const generatedQuestions = [];
-    // Implement logic to generate random questions here
-    // ...
-    console.log(generatedQuestions);
+
+    // Loop through the selected topics
+    selectedTopics.forEach((selectedTopic) => {
+      // Get the questions for the current topic
+      const topicQuestions = questions.filter(
+        (question) => question.topicId === selectedTopic.id
+      );
+
+      // Shuffle the questions randomly
+      const shuffledQuestions = shuffleArray(topicQuestions);
+
+      // Take the required number of questions from the shuffled array
+      const selectedQuestions = shuffledQuestions.slice(0, remainingCount);
+
+      // Add the selected questions to the generated questions array
+      generatedQuestions.push(...selectedQuestions);
+      remainingCount -= selectedQuestions.length;
+
+      if (remainingCount <= 0) {
+        return; // Exit the loop if we have generated enough questions
+      }
+    });
+
+    // Update the state with the generated questions
     setGeneratedQuestions(generatedQuestions);
+   
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
 
   return (
     <div>
-      <h2>Random Question Generator</h2>
+      <h3>Generate Random Questions</h3>
       <div>
-        <label>Number of Questions:</label>
+        <label htmlFor="questionCount">Number of Questions:</label>
         <input
           type="number"
-          value={numQuestions}
-          onChange={(e) => setNumQuestions(e.target.value)}
+          id="questionCount"
+          value={questionCount}
+          onChange={handleQuestionCountChange}
         />
       </div>
       <div>
-        <label>Select Topics:</label>
-        <select
-          multiple
-          value={selectedTopics}
-          onChange={(e) => setSelectedTopics(Array.from(e.target.selectedOptions, (option) => option.value))}
-        >
-          {topics.map((topic, index) => (
-            <option key={index} value={topic}>{topic}</option>
-          ))}
-        </select>
+        <h4>Select Topics:</h4>
+        {topics.map((topic) => (
+          <div key={topic.id}>
+            <input
+              type="checkbox"
+              checked={selectedTopics.some((selectedTopic) => selectedTopic.id === topic.id)}
+              onChange={() => handleTopicSelectionToggle(topic.id)}
+            />
+            <label>{topic.name}</label>
+          </div>
+        ))}
       </div>
       <button onClick={handleGenerateQuestions}>Generate Questions</button>
-      {generatedQuestions.length > 0 && (
-        <div>
-            <h3>Generated Questions:</h3>
-            <ul>
-                {generatedQuestions.map((question, index) => (
-                    <li key={index}>{question}</li>
-                ))}
-            </ul>
-        </div>
-      )}
+      <div>
+        <h4>Random Questions:</h4>
+        {generatedQuestions.map((question) => (
+          <div key={question.id}>{question.text}</div>
+        ))}
+      </div>
     </div>
   );
 }

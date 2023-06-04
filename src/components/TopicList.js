@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-function TopicList({ setSelectedTopic }) {
+
+
+function TopicList() {
 
     // const [newTopic, setNewTopic] = useState('');
 
@@ -30,9 +32,11 @@ function TopicList({ setSelectedTopic }) {
         }
     };
 
-    const handleTopicClick = (topic) => {
-        setSelectedTopic(topic.name);
-    };
+    // before using URL Params:
+    // const handleTopicClick = (topic) => {
+    //     setSelectedTopic(topic.name);
+    // };
+    // onClick={() => handleTopicClick(topic)}
 
     const addTopic = async () => {
         const newTopic = prompt('Enter a new topic:');
@@ -53,14 +57,14 @@ function TopicList({ setSelectedTopic }) {
             <ul>
                 {topics.map((topic) => (
                     <li key={topic.id}>
-                        <Link to={`/questions/${topic.id}`} onClick={() => handleTopicClick(topic)}>
+                        <Link to={`/questions/${topic.id}`} >
                             {topic.name}
                         </Link>
                     </li>
                 ))}
             </ul>
             <button onClick={addTopic}>Add Topic</button>
-            <Link to="/random">Generate Random Questions</Link>
+            <Link to="/random"> Generate Random Questions</Link> 
         </div>
     );
 }

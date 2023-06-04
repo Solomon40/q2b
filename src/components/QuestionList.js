@@ -85,11 +85,14 @@ function QuestionList() {
     };
 
     const handleDeleteQuestion = async (questionId) => {
-        try {
-            await axios.delete(`http://localhost:8000/questions/${questionId}`);
-            await fetchQuestions();
-        } catch (error) {
-            console.error('Error deleting question:', error);
+        const confirmDelete = window.confirm('Are you sure you want to delete this question?');
+        if (confirmDelete) {
+            try {
+                await axios.delete(`http://localhost:8000/questions/${questionId}`);
+                await fetchQuestions();
+            } catch (error) {
+                console.error('Error deleting question:', error);
+            }
         }
     };
 

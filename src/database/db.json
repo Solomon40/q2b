@@ -33,6 +33,36 @@
       "text": "When is Korea>?",
       "topicId": 2,
       "id": 5
+    },
+    {
+      "id": 7,
+      "text": "How many React dey proactive?",
+      "topicId": 1
+    },
+    {
+      "text": "Who created React?",
+      "topicId": 1,
+      "id": 8
+    },
+    {
+      "text": "1 + 1 + 4 = ? Find X",
+      "topicId": 3,
+      "id": 9
+    },
+    {
+      "text": "What is Pythagoras name?",
+      "topicId": 3,
+      "id": 10
+    },
+    {
+      "text": "React Router v5 or latest?",
+      "topicId": 1,
+      "id": 11
+    },
+    {
+      "text": "M for Mathematics or Money?",
+      "topicId": 3,
+      "id": 12
     }
   ]
 }
