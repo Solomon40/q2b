@@ -115,3 +115,77 @@ function QuestionItem({ question, index, updateQuestion, deleteQuestion }) {
 // }
 
 // export default RandomQuestionGenerator;
+
+// const handleGenerateQuestions = () => {
+     // const remainingCount = Math.min(questionCount, selectedTopics.length); //to ensure generated questions do not exceed question count
+    // Create an array to store the generated questions
+    // const generatedQuestions = [];
+
+
+     // Generate at least one question from each selected topic
+    // selectedTopics.slice(0, remainingCount).forEach((selectedTopic) => {
+    //   console.log(selectedTopics);
+    //   const topicQuestions = questions.filter(
+    //     (question) => question.topicId === selectedTopic.id
+    //   );
+
+    //   if (topicQuestions.length > 0) {
+    //     const shuffledQuestions = shuffleArray(topicQuestions);
+    //     generatedQuestions.push(shuffledQuestions[0]);
+    //   }
+    // });
+
+    // // Generate additional questions randomly from remaining topics
+    // const additionalCount = Math.max(0, questionCount - generatedQuestions.length);
+    // const additionalTopics = selectedTopics.slice(remainingCount);
+
+    // for (let i = 0; i < additionalCount; i++) {
+    //   const randomTopic = additionalTopics[Math.floor(Math.random() * additionalTopics.length)];
+    //   const topicQuestions = questions.filter(
+    //     (question) => question.topicId === randomTopic.id
+    //   );
+
+    //   if (topicQuestions.length > 0) {
+    //     const shuffledQuestions = shuffleArray(topicQuestions);
+    //     generatedQuestions.push(shuffledQuestions[0]);
+    //   }
+    // }
+
+
+    // Loop through the selected topics
+    // selectedTopics.forEach((selectedTopic) => {
+    //   // Get the questions for the current topic
+    //   const topicQuestions = questions.filter(
+    //     (question) => question.topicId === selectedTopic.id
+    //   );
+
+    //   // Shuffle the questions randomly
+    //   const shuffledQuestions = shuffleArray(topicQuestions);
+
+    //   // Take the required number of questions from the shuffled array
+    //   // const selectedQuestions = shuffledQuestions.slice(0, remainingCount);
+
+    //   // We check if the shuffledQuestions array for a topic has at least one question using shuffledQuestions.length > 0.
+    //   if (shuffledQuestions.length > 0) {
+    //     // If there are questions available for the topic, select the first question
+    //     generatedQuestions.push(shuffledQuestions[0]);
+    //     remainingCount--;
+    //   }
+
+    //   const selectedQuestions = shuffledQuestions.slice(1, remainingCount + 1);
+
+
+    //   // Add the selected questions to the generated questions array
+    //   generatedQuestions.push(...selectedQuestions);
+    //   remainingCount -= selectedQuestions.length;
+
+    //   if (remainingCount <= 0) {
+    //     return; // Exit the loop if we have generated enough questions
+    //   }
+    // });
+
+    // Update the state with the generated questions
+    // setGeneratedQuestions(generatedQuestions);
+
+
+//}

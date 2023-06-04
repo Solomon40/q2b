@@ -86,35 +86,23 @@ function RandomQuestionGenerator() {
 
 
   const handleGenerateQuestions = () => {
-    let remainingCount = questionCount;
-    // Create an array to store the generated questions
-    const generatedQuestions = [];
-
-    // Loop through the selected topics
-    selectedTopics.forEach((selectedTopic) => {
-      // Get the questions for the current topic
-      const topicQuestions = questions.filter(
-        (question) => question.topicId === selectedTopic.id
-      );
-
-      // Shuffle the questions randomly
-      const shuffledQuestions = shuffleArray(topicQuestions);
-
-      // Take the required number of questions from the shuffled array
-      const selectedQuestions = shuffledQuestions.slice(0, remainingCount);
-
-      // Add the selected questions to the generated questions array
-      generatedQuestions.push(...selectedQuestions);
-      remainingCount -= selectedQuestions.length;
-
-      if (remainingCount <= 0) {
-        return; // Exit the loop if we have generated enough questions
-      }
-    });
-
-    // Update the state with the generated questions
-    setGeneratedQuestions(generatedQuestions);
    
+  const selectedQuestions = [];
+
+  // Gather questions from selected topics
+  selectedTopics.forEach((selectedTopic) => {
+    const topicQuestions = questions.filter(
+      (question) => question.topicId === selectedTopic.id
+    );
+    selectedQuestions.push(...topicQuestions);
+  });
+
+  const randomizedQuestions = shuffleArray(selectedQuestions);
+
+  const generatedQuestions = randomizedQuestions.slice(0, questionCount);
+
+  setGeneratedQuestions(generatedQuestions);
+
   };
 
   if (loading) {
