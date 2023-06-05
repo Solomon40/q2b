@@ -1,16 +1,16 @@
 {
   "topics": [
     {
-      "id": 1,
-      "name": "React"
-    },
-    {
       "name": "e-Gov Proj Plan & Dev",
       "id": 2
     },
     {
-      "name": "maths",
-      "id": 3
+      "name": "Expected Outcomes from e-Government Implementation",
+      "id": 4
+    },
+    {
+      "name": "Critical Success Factors of Korea and Nigeria's e-Government",
+      "id": 5
     }
   ],
   "questions": [
@@ -35,34 +35,89 @@
       "id": 5
     },
     {
-      "id": 7,
-      "text": "How many React dey proactive?",
-      "topicId": 1
+      "text": " ----------------- are resources that are put into the project\na) Outcomes\nb) Sources\nc) Inputs\nd) Outputs\ne) Evaluation\n",
+      "topicId": 4,
+      "id": 13
     },
     {
-      "text": "Who created React?",
-      "topicId": 1,
-      "id": 8
+      "id": 14,
+      "text": " The following are example of e-government’s benefits except \na) Tackling Corruption\nb) It enhances  communication between the different Government department and Agencies \nc) Automates processes to take away discretion \nd) More number of trips to Government offices by citizen \ne) Expanded time window and convenient access \n",
+      "topicId": 4
     },
     {
-      "text": "1 + 1 + 4 = ? Find X",
-      "topicId": 3,
-      "id": 9
+      "text": " Expected e-government contributions include: \na) Increase efficiency\nb) Faster service delivery\nc) Innovation in service delivery\nd) Citizen participation\ne) All of the above\n",
+      "topicId": 4,
+      "id": 15
     },
     {
-      "text": "What is Pythagoras name?",
-      "topicId": 3,
-      "id": 10
+      "text": "Monitoring is collection and analysis of a data about a project or programme undertaken while the project/programme is ongoing. True/False\n",
+      "topicId": 4,
+      "id": 16
     },
     {
-      "text": "React Router v5 or latest?",
-      "topicId": 1,
-      "id": 11
+      "text": "The following are method to evaluate e-government outcome except \na) Survey \nb) Simulation \nc) Case study \nd) Field experiment\ne) None of the above\n",
+      "topicId": 4,
+      "id": 17
     },
     {
-      "text": "M for Mathematics or Money?",
-      "topicId": 3,
-      "id": 12
+      "text": "Pathway to change maybe linear or non-linear. True/False\n",
+      "topicId": 4,
+      "id": 18
+    },
+    {
+      "text": "e-Government is about what?\na) About “e” \nb) About “computer”\nc) About “website” \nd) About “transformation of  Government business process”\ne) Above “translating Government business process”\n",
+      "topicId": 4,
+      "id": 19
+    },
+    {
+      "text": "Outputs start to bring about changes called ………….\na) Outcomes\nb) Monitoring\nc) Inputs\nd) Outputs\ne) Evaluation\n",
+      "topicId": 4,
+      "id": 20
+    },
+    {
+      "text": "Any M & E system or process designed is NOT to feed into management decision-making. True/False\n",
+      "topicId": 4,
+      "id": 21
+    },
+    {
+      "text": "M & E are outcomes orientated in nature. True/False\n",
+      "topicId": 4,
+      "id": 22
+    },
+    {
+      "text": "What are the two types of risks in the context of e-Government\na) Generic risk and Project-specific risk\nb) Culture and Environment\nc) People and Environment \nd) None of the Above\ne) All of the Above",
+      "topicId": 5,
+      "id": 23
+    },
+    {
+      "text": "What are critical success factors in the context of e-Government?\na) They are those variables necessary to enable a desired outcome for an organization, project, policy or strategy\nb) They are factors that must be in place to create a successful environment for a desired project outcome\nc) None of the above\nd) All of the above\ne) They are factors that must be implemented promptly, objectively and timely to achieve a desired result",
+      "topicId": 5,
+      "id": 24
+    },
+    {
+      "text": "What is a Risk Factor?\na) Any attribute, characteristic or exposure of project, policy, organization that increase the likelihood of failure\nb) I don't know\nc) It does not exist in e-Government project\nd) None of the above\ne) All of the above",
+      "topicId": 5,
+      "id": 25
+    },
+    {
+      "text": "What is Nigeria's solution to e-Government failure?\na) IT Project Clearance\nb) National Digital Economy Policy Strategy\nc) National Broadband Plan\nd) All of the above\ne) None of the above",
+      "topicId": 5,
+      "id": 26
+    },
+    {
+      "text": "What was the major factor of Korea's e-Government's success?\na) Strong political leadership and strategic approach\nb) Finance\nc) Legal and regulatory framework\nd) None of the above\ne) All of the above",
+      "topicId": 5,
+      "id": 27
+    },
+    {
+      "text": "What was the major challenge to e-Government initiatives in Nigeria according to a study carried out by NITDA in 2019?\na) Finance\nb) Leadership failure\nc) Digital Divide\nd) Infrastructure\ne) Human Resource workforce",
+      "topicId": 5,
+      "id": 28
+    },
+    {
+      "text": "What are the categories of risks that can block or constrain e-Government implementation in developing countries?\na) Leadership failure, financial inhibitor, insufficient skill\nb) They are those variables of circumstances necessary to enable a positive outcome for an organization, project or strategy\nc) ",
+      "topicId": 5,
+      "id": 29
     }
   ]
 }

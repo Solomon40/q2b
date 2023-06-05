@@ -3,6 +3,8 @@ import TopicList from './TopicList';
 import QuestionList from './QuestionList';
 import RandomQuestionGenerator from './RandomQuestionGenerator';
 import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   

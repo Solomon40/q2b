@@ -81,7 +81,7 @@ function QuestionForm({ selectedTopic, question, onQuestionSubmit }) {
             <form onSubmit={handleSubmit}>
                 <label>
                     Question:
-                    <input type="text" value={questionText} onChange={handleQuestionTextChange} />
+                    <textarea value={questionText} onChange={handleQuestionTextChange}></textarea>
                 </label>
                 <button type="submit">{question ? 'Save' : 'Add'}</button>
             </form>

@@ -52,7 +52,7 @@ function TopicList() {
 
 
     return (
-        <div>
+        <div className="App" >
             <h2>Topics</h2>
             <ul>
                 {topics.map((topic) => (
