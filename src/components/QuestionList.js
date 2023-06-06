@@ -3,6 +3,7 @@ import QuestionForm from './QuestionForm';
 // import QuestionItem from './QuestionItem';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import Card from 'react-bootstrap/Card';
 
 function QuestionList() {
     const [selectedTopic, setSelectedTopic] = useState(null);
@@ -106,7 +107,7 @@ function QuestionList() {
     }
 
     return (
-        <div>
+        <div className='callout-questions'>
             {/* For when there was no database
             
             <h2>Questions for {selectedTopic}</h2>
@@ -138,7 +139,7 @@ function QuestionList() {
             <QuestionForm selectedTopic={selectedTopic} /> */}
 
             {questions.map((question) => (
-                <div key={question.id}>
+                <Card className='mb-3' key={question.id}>
                     {editingQuestionId === question.id ? (
                         <QuestionForm
                             selectedTopic={selectedTopic}
@@ -147,12 +148,15 @@ function QuestionList() {
                         />
                     ) : (
                         <>
-                            <p>{question.text}</p>
-                            <button onClick={() => handleEditQuestion(question.id)}>Edit</button>
-                            <button onClick={() => handleDeleteQuestion(question.id)}>Delete</button>
+                            <Card.Header>1 of 5</Card.Header>
+                        <Card.Body className=''>
+                            <Card.Text>{question.text}</Card.Text>
+                            <button className='btn btn-primary me-2' onClick={() => handleEditQuestion(question.id)}>Edit</button>
+                            <button className='btn btn-danger' onClick={() => handleDeleteQuestion(question.id)}>Delete</button>
+                        </Card.Body>
                         </>
                     )}
-                </div>
+                </Card>
             ))}
             {showAddQuestionForm ? (
                 <QuestionForm

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import Card from 'react-bootstrap/Card';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 
 
 function TopicList() {
@@ -38,8 +40,19 @@ function TopicList() {
     // };
     // onClick={() => handleTopicClick(topic)}
 
+    const [show, setShow] = useState(false);
+    const [topicText, setTopicText] = useState('');
+
+    const handleClose = () => setShow(false);
+    const handleTopicTextChange = (event) => setTopicText(event.target.value);
+
     const addTopic = async () => {
-        const newTopic = prompt('Enter a new topic:');
+        setShow(true);
+       
+    };
+
+    const handleSubmit = async () => {
+        const newTopic = topicText;
         if (newTopic) {
             try {
                 await axios.post('http://localhost:8000/topics', { name: newTopic });
@@ -48,25 +61,60 @@ function TopicList() {
                 console.error('Error adding topic:', error);
             }
         }
-    };
+    }
 
 
     return (
-        <div className="App" >
-            <h2>Topics</h2>
-            <ul>
-                {topics.map((topic) => (
-                    <li key={topic.id}>
-                        <Link to={`/questions/${topic.id}`} >
-                            {topic.name}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-            <button onClick={addTopic}>Add Topic</button>
-            <Link to="/random"> Generate Random Questions</Link> 
-        </div>
+        <section class="callout">
+            <div class="container px-4 px-lg-5 text-center">
+                <h2 class="mx-auto mb-5">
+                    Available Topics
+                </h2>
+                <div className='mb-5'>
+                    {topics.map((topic) => (
+                        <Card key={topic.id}>
+                            <Card.Body><Link class="btn" to={`/questions/${topic.id}`} >
+                                {topic.name}
+                            </Link></Card.Body>
+                        </Card>
+
+                    ))}
+                </div>
+
+                <button class="btn btn-xl btn-light me-4" onClick={addTopic}>Add Topic</button>
+                <Link to="/random" class="btn btn-xl btn-dark" >Generate Questions</Link>
+
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Add Topic</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form onSubmit={handleSubmit}>
+                            <Form.Group className="mb-5" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Enter a new topic:</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="e.g Mathematics"
+                                    value={topicText} onChange={handleTopicTextChange}
+                                    autoFocus
+                                />
+                            </Form.Group>
+                         
+                        <button className="btn btn-secondary me-3" onClick={handleClose}>
+                            Close
+                        </button>
+                        <button className="btn btn-primary" type="submit">
+                            Save Changes
+                        </button>
+                        </Form>
+                    </Modal.Body>
+                    
+                </Modal>
+            </div>
+        </section>
     );
 }
 
 export default TopicList;
+
+

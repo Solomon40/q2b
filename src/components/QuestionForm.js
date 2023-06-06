@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
+
 
 function QuestionForm({ selectedTopic, question, onQuestionSubmit }) {
     //   code when form was used for only Add Question:
@@ -65,7 +68,7 @@ function QuestionForm({ selectedTopic, question, onQuestionSubmit }) {
     };
 
     return (
-        <div>
+        <Card>
             {/* <h2>Add Question</h2>
             <form onSubmit={handleSubmit}>
                 <input
@@ -77,15 +80,25 @@ function QuestionForm({ selectedTopic, question, onQuestionSubmit }) {
                 <button type="submit">{question ? 'Update Question' : 'Add Question'}</button>
             </form> */}
 
-            <h3>{question ? 'Edit Question' : 'Add Question'}</h3>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Question:
-                    <textarea value={questionText} onChange={handleQuestionTextChange}></textarea>
-                </label>
-                <button type="submit">{question ? 'Save' : 'Add'}</button>
-            </form>
-        </div>
+            <Card.Header>
+                <Card.Title>{question ? 'Edit Question' : 'Add Question'}</Card.Title>
+                </Card.Header>
+            <Card.Body>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlTextarea1"
+                    >
+                        <Form.Label>Question: </Form.Label>
+                        <Form.Control as="textarea" rows={3} value={questionText} onChange={handleQuestionTextChange} />
+                    </Form.Group>
+
+                    <button className="btn btn-primary" type="submit">
+                        {question ? 'Save' : 'Add'}
+                    </button>
+                </Form>
+            </Card.Body>
+        </Card>
     );
 }
 

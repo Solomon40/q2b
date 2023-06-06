@@ -116,6 +116,10 @@ function QuestionItem({ question, index, updateQuestion, deleteQuestion }) {
 
 // export default RandomQuestionGenerator;
 
+
+
+
+// OLD Handle Generate Questions function, causing confusion between number generated and number count...
 // const handleGenerateQuestions = () => {
      // const remainingCount = Math.min(questionCount, selectedTopics.length); //to ensure generated questions do not exceed question count
     // Create an array to store the generated questions
@@ -189,3 +193,21 @@ function QuestionItem({ question, index, updateQuestion, deleteQuestion }) {
 
 
 //}
+
+
+
+// old TopicList component, when there was no bootstrap
+// <div>
+//             <h2>Topics</h2>
+            // <ul>
+            //     {topics.map((topic) => (
+            //         <li key={topic.id}>
+            //             <Link to={`/questions/${topic.id}`} >
+            //                 {topic.name}
+            //             </Link>
+            //         </li>
+            //     ))}
+            // </ul>
+//             <button onClick={addTopic}>Add Topic</button>
+//             <Link to="/random"> Generate Random Questions</Link>
+//         </div>
