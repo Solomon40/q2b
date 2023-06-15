@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ListGroup } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 function RandomQuestionGenerator() {
   const [topics, setTopics] = useState([]);
@@ -8,6 +10,7 @@ function RandomQuestionGenerator() {
   const [generatedQuestions, setGeneratedQuestions] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     fetchTopics();
@@ -86,23 +89,28 @@ function RandomQuestionGenerator() {
 
 
   const handleGenerateQuestions = () => {
-   
-  const selectedQuestions = [];
 
-  // Gather questions from selected topics
-  selectedTopics.forEach((selectedTopic) => {
-    const topicQuestions = questions.filter(
-      (question) => question.topicId === selectedTopic.id
-    );
-    selectedQuestions.push(...topicQuestions);
-  });
+    const selectedQuestions = [];
 
-  const randomizedQuestions = shuffleArray(selectedQuestions);
+    // Gather questions from selected topics
+    selectedTopics.forEach((selectedTopic) => {
+      const topicQuestions = questions.filter(
+        (question) => question.topicId === selectedTopic.id
+      );
+      selectedQuestions.push(...topicQuestions);
+    });
 
-  const generatedQuestions = randomizedQuestions.slice(0, questionCount);
+    const randomizedQuestions = shuffleArray(selectedQuestions);
 
-  setGeneratedQuestions(generatedQuestions);
+    const generatedQuestions = randomizedQuestions.slice(0, questionCount);
 
+    setGeneratedQuestions(generatedQuestions);
+
+    // Convert generatedQuestions to JSON string
+    const generatedQuestionsJson = JSON.stringify(generatedQuestions);
+
+    // Navigate to a new page with generatedQuestions as a URL parameter
+    history.push(`/results?questions=${encodeURIComponent(generatedQuestionsJson)}`);
   };
 
   if (loading) {
@@ -111,38 +119,41 @@ function RandomQuestionGenerator() {
 
 
   return (
-    <div>
-      <h3>Generate Random Questions</h3>
-      <div>
-        <label htmlFor="questionCount">Number of Questions:</label>
-        <input
-          type="number"
-          id="questionCount"
-          value={questionCount}
-          onChange={handleQuestionCountChange}
-        />
+    <section className='callout-generate'>
+      <div className="container px-4 px-lg-5 text-center">
+
+        <h2 className="mx-auto mb-5">Generate Random Questions</h2>
       </div>
-      <div>
-        <h4>Select Topics:</h4>
-        {topics.map((topic) => (
-          <div key={topic.id}>
-            <input
-              type="checkbox"
-              checked={selectedTopics.some((selectedTopic) => selectedTopic.id === topic.id)}
-              onChange={() => handleTopicSelectionToggle(topic.id)}
-            />
-            <label>{topic.name}</label>
-          </div>
-        ))}
+      <div style={{ paddingLeft: "30px" }}>
+        <div className='mb-2'>
+          <label htmlFor="questionCount" className='me-2'><h4> Number of Questions:</h4></label>
+          <input
+            type="number"
+            id="questionCount"
+            placeholder="Enter a number, e.g. 5"
+            value={questionCount}
+            onChange={handleQuestionCountChange}
+          />
+        </div>
+        <div className='mb-4'>
+          <h4>Select Topics:</h4>
+          {topics.map((topic) => (
+            <ListGroup key={topic.id} horizontal>
+              <ListGroup.Item>
+                <input
+                  type="checkbox"
+                  checked={selectedTopics.some((selectedTopic) => selectedTopic.id === topic.id)}
+                  onChange={() => handleTopicSelectionToggle(topic.id)}
+                />
+                <label>{topic.name}</label>
+              </ListGroup.Item>
+            </ListGroup>
+          ))}
+        </div>
+        <button className="btn btn-success" onClick={handleGenerateQuestions}>Generate Questions</button>
+        
       </div>
-      <button onClick={handleGenerateQuestions}>Generate Questions</button>
-      <div>
-        <h4>Random Questions:</h4>
-        {generatedQuestions.map((question) => (
-          <div key={question.id}>{question.text}</div>
-        ))}
-      </div>
-    </div>
+    </section>
   );
 }
 

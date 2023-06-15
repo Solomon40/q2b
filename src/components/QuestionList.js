@@ -12,6 +12,7 @@ function QuestionList() {
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
     const [showAddQuestionForm, setShowAddQuestionForm] = useState(false);
+    let currentQuestion = 0;
 
     // for when there wasn't a database:
     // const addQuestion = (question) => {
@@ -148,12 +149,12 @@ function QuestionList() {
                         />
                     ) : (
                         <>
-                            <Card.Header>1 of 5</Card.Header>
-                        <Card.Body className=''>
-                            <Card.Text>{question.text}</Card.Text>
-                            <button className='btn btn-primary me-2' onClick={() => handleEditQuestion(question.id)}>Edit</button>
-                            <button className='btn btn-danger' onClick={() => handleDeleteQuestion(question.id)}>Delete</button>
-                        </Card.Body>
+                            <Card.Header>{currentQuestion += 1} of {questions.length}</Card.Header>
+                            <Card.Body className=''>
+                                <Card.Text style={{ whiteSpace: 'pre-wrap' }}>{question.text}</Card.Text>
+                                <button className='btn btn-primary me-2' onClick={() => handleEditQuestion(question.id)}>Edit</button>
+                                <button className='btn btn-danger' onClick={() => handleDeleteQuestion(question.id)}>Delete</button>
+                            </Card.Body>
                         </>
                     )}
                 </Card>
@@ -164,10 +165,12 @@ function QuestionList() {
                     onQuestionSubmit={handleQuestionSubmit}
                 />
             ) : (
-                <button onClick={handleAddQuestion}>Add Question</button>
+                <button className='btn btn-success' onClick={handleAddQuestion}>Add Question</button>
             )}
         </div>
     );
 }
 
+
 export default QuestionList;
+

@@ -34,14 +34,9 @@
       "topicId": 2
     },
     {
-      "text": "When is Korea>?",
-      "topicId": 2,
-      "id": 5
-    },
-    {
+      "id": 13,
       "text": " ----------------- are resources that are put into the project\na) Outcomes\nb) Sources\nc) Inputs\nd) Outputs\ne) Evaluation\n",
-      "topicId": 4,
-      "id": 13
+      "topicId": 4
     },
     {
       "id": 14,
@@ -90,13 +85,13 @@
     },
     {
       "id": 23,
-      "text": "What are the two types of risks in the context of e-Government\na) Generic risk and Project-specific risk\nb) Culture and Environment\nc) People and Environment \nd) None of the Above\ne) All of the Above",
+      "text": "What are the two types of risks in the context of e-Government:\n\na) Generic risk and Project-specific risk\nb) Culture and Environment\nc) People and Environment \nd) All of the Above\ne) None of the Above",
       "topicId": 5
     },
     {
-      "text": "What are critical success factors in the context of e-Government?\na) They are those variables necessary to enable a desired outcome for an organization, project, policy or strategy\nb) They are factors that must be in place to create a successful environment for a desired project outcome\nc) None of the above\nd) All of the above\ne) They are factors that must be implemented promptly, objectively and timely to achieve a desired result",
-      "topicId": 5,
-      "id": 24
+      "id": 24,
+      "text": "What are critical success factors in the context of e-Government?\na) They are those variables necessary to enable a desired outcome for an organization, project, policy or strategy\nb) They are factors that must be in place to create a successful environment for a desired project outcome\nc) They are factors that must be implemented promptly, objectively and timely to achieve a desired result\nd) All of the above\ne) None of the above",
+      "topicId": 5
     },
     {
       "text": "What is a Risk Factor?\na) Any attribute, characteristic or exposure of project, policy, organization that increase the likelihood of failure\nb) I don't know\nc) It does not exist in e-Government project\nd) None of the above\ne) All of the above",
@@ -122,6 +117,16 @@
       "text": "What are the categories of risks that can block or constrain e-Government implementation in developing countries?\na) Leadership failure, financial inhibitor, insufficient skill\nb) They are those variables of circumstances necessary to enable a positive outcome for an organization, project or strategy\nc) ",
       "topicId": 5,
       "id": 29
+    },
+    {
+      "id": 30,
+      "text": "I say when is Korea?\na. Answer me\n\nb. Do not reply",
+      "topicId": 2
+    },
+    {
+      "id": 31,
+      "text": "Which technological instrument is most necessary for e-Governance\n\na) SMS\nb) e-Mail\nc) ICT (correct)\nd) EGDI\ne) None of the above",
+      "topicId": 6
     }
   ]
 }
